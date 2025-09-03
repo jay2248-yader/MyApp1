@@ -4,26 +4,41 @@
     "slug": "MyApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jjay2248.myapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "We need access to your camera to scan QR codes."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
+        "backgroundColor": "#ffffff",
+        "permissions": ["CAMERA"]
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d05dc7d7-77a4-49fd-85db-f7f3920bc0e3"
+      }
+    },
+    "owner": "jjay2248",
+    "plugins": [
+      "expo-barcode-scanner"
+    ]
   }
 }

@@ -11,7 +11,7 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import { useFonts } from "expo-font";
 
-export default function LoginScreen({ onLogin }) {
+export default function LoginScreen() {
   const [fontsLoaded] = useFonts({
     NotoSansLao: require("../../assets/fonts/Noto_Sans_Lao/NotoSansLao-VariableFont_wdth,wght.ttf"),
   });
@@ -28,7 +28,7 @@ export default function LoginScreen({ onLogin }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorID, setErrorID] = useState("");
-  const [errorPass, setErrorPass] = useState(""); 
+  const [errorPass, setErrorPass] = useState("");
   const [comboboxError, setComboboxError] = useState("");
 
   const handleLogin = async () => {
@@ -59,15 +59,6 @@ export default function LoginScreen({ onLogin }) {
       onLogin({ employeeId, password, location: value });
     }
   };
-
-  if (!fontsLoaded) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#fff" />
-        <Text style={styles.loadingText}>Loading Fonts...</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>

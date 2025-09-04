@@ -1,14 +1,15 @@
 // src/components/ProductItem.jsx
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, onPress }) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.code}>ລະຫັດສິນຄ້າ: {product.CODE}</Text>
-      <Text style={styles.name}>{product.NAMEEN}</Text>
-
-    </View>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <View style={styles.container}>
+        <Text style={styles.code}>ລະຫັດສິນຄ້າ: {product.CODE}</Text>
+        <Text style={styles.name}>{product.NAMEEN}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -32,11 +33,5 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 13,
     color: "#333",
-    marginBottom: 2,
-  },
-  nameThai: {
-    fontSize: 12,
-    color: "#666",
-    fontStyle: "italic",
   },
 });

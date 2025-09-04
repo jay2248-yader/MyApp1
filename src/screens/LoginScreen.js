@@ -58,7 +58,7 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0051a2", justifyContent: "center", alignItems: "center" },
+  container: { flex: 1, backgroundColor: "#408ee0", justifyContent: "center", alignItems: "center" },
   box: { width: "80%", padding: 20, backgroundColor: "white", borderRadius: 10 },
   header: { fontSize: 22, fontWeight: "bold", color: "black", textAlign: "center", marginBottom: 20 },
 });

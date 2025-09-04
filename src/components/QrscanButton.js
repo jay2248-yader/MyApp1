@@ -22,7 +22,7 @@ export default function QrScanButton({ title = "Scan QR", onPress, loading }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#28a745", 
+    backgroundColor: "#0051a2", 
     padding: 15,
     borderRadius: 8,
     alignItems: "center",

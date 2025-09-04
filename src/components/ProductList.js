@@ -3,13 +3,11 @@ import React from "react";
 import { FlatList, View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import ProductItem from "./ProductItem";
 
-export default function ProductList({ products, error, loading }) {
+export default function ProductList({ products, error, loading, onSelect }) {
     const renderItem = ({ item }) => (
     <ProductItem 
       product={item} 
-      onPress={() => {
-        console.log('Product selected:', item);
-      }}
+      onPress={() => onSelect && onSelect(item)}
     />
   );
 

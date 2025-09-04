@@ -5,6 +5,7 @@ import QrScanButton from "../components/QrscanButton";
 import LogoutButton from "../components/LogoutButton";
 import useHomeScreen from "../hooks/useHome";
 import ProductList from "../components/ProductList";
+import useGoToProduct from "../hooks/useGoToProduct";
 
 export default function HomeScreen({ navigation }) {
   const {
@@ -19,6 +20,12 @@ export default function HomeScreen({ navigation }) {
     handleLogout,
   } = useHomeScreen(navigation);
 
+  const { goToProduct } = useGoToProduct(navigation);
+
+  const handleSelectProduct = (product) => {
+    goToProduct({ product });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchRow}>
@@ -26,7 +33,7 @@ export default function HomeScreen({ navigation }) {
           <SearchInput
             value={searchText}
             onChangeText={setSearchText}
-            placeholder="ຄົ້ນຫາ..."
+            placeholder="ຄົ້ນຫາຊື່ສິນຄ້າ"
             onSubmitEditing={handleSearch}
           />
         </View>
@@ -36,7 +43,7 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <View style={styles.resultsBox}>
-        <ProductList products={products} error={error} loading={loading} />
+        <ProductList products={products} error={error} loading={loading} onSelect={handleSelectProduct} />
       </View>
 
       <View style={styles.bottomButtonRow}>
@@ -48,7 +55,7 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: "#0051a2" },
+  container: { flex: 1, padding: 20, backgroundColor: "#408ee0" },
   searchRow: { flexDirection: "row", alignItems: "center", marginBottom: 10, paddingTop: 40 },
   inputWrapper: { flex: 3, marginRight: 10 },
   buttonWrapper: { flex: 1 },

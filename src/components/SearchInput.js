@@ -1,8 +1,8 @@
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Keyboard } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // ใช้ไอคอน search
 
-export default function SearchInput({ value, onChangeText, placeholder }) {
+export default function SearchInput({ value, onChangeText, placeholder, onSubmitEditing }) {
   return (
     <View style={styles.container}>
       <Ionicons name="search" size={20} color="#555" style={styles.icon} />
@@ -12,6 +12,10 @@ export default function SearchInput({ value, onChangeText, placeholder }) {
         onChangeText={onChangeText}
         placeholder={placeholder || "Search..."}
         placeholderTextColor="#888"
+        onSubmitEditing={onSubmitEditing}
+        returnKeyType="search"
+        blurOnSubmit={true}
+        onBlur={() => Keyboard.dismiss()}
       />
     </View>
   );

@@ -1,32 +1,63 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from "react-native";
 import ProductDetailList from "../components/ProductDetailList";
+import usePriceData from "../hooks/usePriceData";
 
 export default function ProductScreen({ route }) {
-  const { qrData, qrType, product, productCode } = route.params || {};
+  const { qrData, qrType, productCode } = route.params || {};
+
+  const { priceData, warehouseData, loading, error, usedCode } = usePriceData({ productCode, qrData });
 
   return (
     <View style={styles.container}>
-      <ProductDetailList />
-      {productCode ? (
-        <View style={styles.codeBox}>
-          <Text style={styles.codeTitle}>Product Code</Text>
-          <Text style={styles.codeText}>{productCode}</Text>
+      <ScrollView 
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {usedCode && (
+          <View style={styles.codeBox}>
+            <Text style={styles.codeTitle}>Code Used</Text>
+            <Text style={styles.codeText}>{usedCode}</Text>
+          </View>
+        )}
+
+        {qrData && (
+          <View style={styles.codeBox}>
+            <Text style={styles.codeTitle}>Scanned Code</Text>
+            <Text style={styles.codeText}>{qrData}</Text>
+            {qrType && <Text style={styles.typeText}>Type: {qrType}</Text>}
+          </View>
+        )}
+
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.sectionTitle}>Product Details:</Text>
+          {loading && <ActivityIndicator size="large" color="#fff" />}
+          {error && <Text style={{ color: "red" }}>{error}</Text>}
+          {!loading && !error && (
+            <ProductDetailList
+              priceData={priceData}
+              warehouseData={warehouseData} // <-- ตรงนี้สำคัญ
+            />
+          )}
         </View>
-      ) : null}
-      {qrData ? (
-        <View style={styles.codeBox}>
-          <Text style={styles.codeTitle}>Scanned Code</Text>
-          <Text style={styles.codeText}>{qrData}</Text>
-          {qrType ? <Text style={styles.typeText}>Type: {qrType}</Text> : null}
-        </View>
-      ) : null}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: "#408ee0" },
+  container: { 
+    flex: 1, 
+    backgroundColor: "#408ee0" 
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 20,
+    paddingBottom: 40,
+  },
   codeBox: {
     marginTop: 16,
     backgroundColor: "#fff",
@@ -47,5 +78,11 @@ const styles = StyleSheet.create({
   typeText: {
     fontSize: 14,
     color: "#555",
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#fff",
+    marginBottom: 12,
   },
 });

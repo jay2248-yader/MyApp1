@@ -22,7 +22,7 @@ export default function ScanQrScreen({ navigation }) {
       />
 
       {/* Overlay */}
-      <View style={styles.overlayContainer} pointerEvents="box-none">
+      <View style={styles.overlayContainer}>
         {/* Top mask */}
         <View style={styles.mask} />
 
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   overlayContainer: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
+    pointerEvents: "box-none",
   },
   mask: {
     flex: 1,

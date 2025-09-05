@@ -4,11 +4,11 @@
     "slug": "MyApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
+    "icon": "./assets/splash-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,11 +22,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Gemini_Generated_Image_9sa1129sa1129sa1.png",
-        "backgroundColor": "#ffffff",
-        "permissions": ["CAMERA"]
+        "foregroundImage": "./assets/splash-icon.png",
+        "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.jjay2248.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -38,7 +38,8 @@
     },
     "owner": "jjay2248",
     "plugins": [
-      "expo-barcode-scanner"
+      "expo-barcode-scanner",
+      "expo-font"
     ]
   }
 }

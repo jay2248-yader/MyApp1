@@ -42,6 +42,12 @@ export default function useLogin() {
     try {
       setLoading(true);
       const { data } = await loginApi(employeeId, password);
+      
+      // Check if response is HTML (error page)
+      if (typeof data === 'string' && data.includes('<!DOCTYPE html>')) {
+        throw new Error('Server returned HTML instead of JSON. Please check if the API server is running.');
+      }
+      
       console.log("Login success:", data);
 
       // ใช้ navigation helper

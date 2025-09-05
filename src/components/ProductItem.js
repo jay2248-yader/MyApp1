@@ -19,10 +19,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     backgroundColor: "#fff",
     borderRadius: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 2 },
+    // แก้ไขจาก shadow* เป็น boxShadow
+    boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
   },
   code: {
     fontSize: 14,

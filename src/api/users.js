@@ -13,10 +13,24 @@ export const getProductByName = async (productName) => {
       product: productName.trim() 
     });
     
-    // Ensure we return an array
     return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
     console.error('API Error in getProductByName:', error);
     throw error;
   }
 };
+export const getPriceByProductCode = async (productCode) => {
+  if (!productCode?.trim()) return { priceData: [], warehouseData: [] };
+
+  try {
+    const response = await api.get(`/users/price-check/${productCode}`);
+    return {
+      priceData: response.data.dataPrice || [],
+      warehouseData: response.data.dataWarehouse || [],
+    };
+  } catch (error) {
+    console.error('API Error in getPriceByProductCode:', error);
+    throw error;
+  }
+};
+

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f1f1f1",
     borderRadius: 8,
     paddingHorizontal: 10,
-    height: 40,
+    height: 50,
     marginVertical: 5,
   },
   icon: {
@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: "#000",
+        fontFamily: "NotoSansLao-Regular",
   },
 });

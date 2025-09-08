@@ -19,6 +19,7 @@ export default function SearchButton({ title, onPress, loading }) {
 
 const styles = StyleSheet.create({
   button: {
+    height: 50,
     backgroundColor: "#0051a2",
     paddingVertical: 10,
     paddingHorizontal: 15,

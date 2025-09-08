@@ -1,59 +1,47 @@
 // src/components/DataWarehouseItem.js
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
+import { Table, Row } from "react-native-table-component";
 
 export default function DataWarehouseItem({ item }) {
+  // เตรียมข้อมูล row
+  const rowData = [
+    `(${item.WAREHOUSE}-${item.LOCATION})\n${item.WHNAME}`,
+    item.UNITNAME,
+    item.STOCKQTY.toString(),
+  ];
+
   return (
-    <View style={styles.card}>
-      <Text style={styles.label}>
-        ສາງ: <Text style={styles.value}>( {item.WAREHOUSE}-{item.LOCATION} ) {item.WHNAME}</Text>
-      </Text>
-      <Text style={styles.label}>
-        ຫົວໜ່ວຍ: <Text style={styles.value}>{item.UNITNAME}</Text>
-      </Text>
-      <Text style={styles.label}>
-        ຈຳນວນ:{" "}
-        <Text style={[styles.value, item.STOCKQTY > 0 ? styles.inStock : styles.outStock]}>
-          {item.STOCKQTY}
-        </Text>
-      </Text>
-    </View>
+    <Table borderStyle={{ borderWidth: 1, borderColor: "#e9ecef" }}>
+      <Row
+        data={rowData}
+        style={styles.row}
+        textStyle={styles.text}
+        flexArr={[2, 1, 1]} // column แรกกว้างกว่าหน่อย
+      />
+    </Table>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#f8f9fa",
-    borderRadius: 8,
-    padding: 12,
-    marginVertical: 4,
-    borderWidth: 1,
-    borderColor: "#e9ecef",
+  row: {
+    minHeight: 40,
+    backgroundColor: "#ffffff",
   },
-  productName: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#0051a2",
-    marginBottom: 6,
-  },
-  codeText: {
+  text: {
     fontSize: 14,
-    color: "#444",
-    marginBottom: 6,
-  },
-  label: {
-    fontSize: 14,
-    color: "#555",
-    marginBottom: 2,
-  },
-  value: {
-    fontWeight: "600",
-    color: "#222",
+    textAlign: "center",
+    fontFamily: "NotoSansLao-Regular",
+    fontFamily: "NotoSansThai",
+    color: "#495057",
+    paddingVertical: 6,
   },
   inStock: {
-    color: "green",
+    color: "#2e7d32", // เขียว
+    fontWeight: "600",
   },
   outStock: {
-    color: "red",
+    color: "#d32f2f", // แดง
+    fontWeight: "600",
   },
 });

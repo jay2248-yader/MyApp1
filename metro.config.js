@@ -6,11 +6,4 @@ const config = getDefaultConfig(__dirname, {
   isCSSEnabled: true,
 });
 
-// Workaround for Metro version compatibility issues
-// This prevents the importLocationsPlugin error by using a simplified configuration
-config.serializer = {
-  ...config.serializer,
-  customSerializer: undefined,
-};
-
 module.exports = config;

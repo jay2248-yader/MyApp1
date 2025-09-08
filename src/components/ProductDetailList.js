@@ -6,7 +6,7 @@ import ProductGroupItem from "./ProductGroupItem";
 export default function ProductDetailList({ priceData = [], warehouseData = [] }) {
   // ถ้าไม่มีข้อมูลทั้งสอง
   if ((!priceData || priceData.length === 0) && (!warehouseData || warehouseData.length === 0)) {
-    return <Text style={styles.emptyText}>ไม่มีข้อมูลราคาและคลังสินค้า</Text>;
+    return <Text style={styles.emptyText}>ບໍ່ພົບຂໍ້ມູນສິນຄ້າ</Text>;
   }
 
   // Group data by product - create array of { dataPrice, dataWarehouse }
@@ -38,6 +38,7 @@ export default function ProductDetailList({ priceData = [], warehouseData = [] }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   emptyText: {
     color: "#aaa",

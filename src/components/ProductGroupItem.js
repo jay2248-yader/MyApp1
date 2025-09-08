@@ -3,38 +3,48 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import DataPrice from "./DataPrice";
 import DataWarehouseItem from "./DataWarehouseItem";
+import { Table, Row } from "react-native-table-component";
 
 export default function ProductGroupItem({ dataPrice, dataWarehouse = [] }) {
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Product Information</Text>
+        <Text style={styles.headerTitle}>ຂໍ້ມູນສິນຄ້າ</Text>
         <Text style={styles.productCode}>{dataPrice?.CURRENCYCODE}</Text>
       </View>
-      
+
       {/* Body Section */}
       <View style={styles.body}>
         {/* Price Information */}
         <View style={styles.priceSection}>
-          <Text style={styles.sectionTitle}>Price Information</Text>
           <DataPrice item={dataPrice} />
         </View>
-        
+
         {/* Warehouse Information */}
         {dataWarehouse && dataWarehouse.length > 0 && (
           <View style={styles.warehouseSection}>
-            <Text style={styles.sectionTitle}>Warehouse Information</Text>
+            {/* Table Header */}
+            <Table borderStyle={{ borderWidth: 1, borderColor: "#e9ecef" }}>
+              <Row
+                data={["ສາງ", "ຫົວໜ່ວຍ", "ຈຳນວນ"]}
+                flexArr={[2, 1, 1]}
+                style={styles.tableHeader}
+                textStyle={styles.tableHeaderText}
+              />
+            </Table>
+
+            {/* Data Rows */}
             {dataWarehouse.map((whItem, index) => (
-              <DataWarehouseItem 
-                key={`${whItem.PRODUCTCODE}-${whItem.WAREHOUSE}-${whItem.LOCATION}-${index}`} 
-                item={whItem} 
+              <DataWarehouseItem
+                key={`${whItem.PRODUCTCODE}-${whItem.WAREHOUSE}-${whItem.LOCATION}-${index}`}
+                item={whItem}
               />
             ))}
           </View>
         )}
       </View>
-      
+
       {/* Footer Section */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
@@ -65,15 +75,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
+    fontFamily: "NotoSansLao-Regular",
   },
   productCode: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "600",
-    color: "#fff",
-    backgroundColor: "rgba(255,255,255,0.2)",
+    color: "black",
+    fontFamily: "NotoSansLao-Regular",
+    backgroundColor: "#89bff8",
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,
@@ -89,11 +101,16 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#e0e0e0",
   },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
+  tableHeader: {
+    height: 40,
+    backgroundColor: "#f0f7ff",
+  },
+  tableHeaderText: {
+    fontSize: 15,
+    fontWeight: "600",
     color: "#0051a2",
-    marginBottom: 12,
+    textAlign: "center",
+    fontFamily: "NotoSansLao-Regular",
   },
   footer: {
     backgroundColor: "#f5f5f5",

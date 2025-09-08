@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons"; 
 
-export default function QrScanButton({ title = "Scan QR", onPress, loading }) {
+export default function QrScanButton({ onPress, loading }) {
   return (
     <TouchableOpacity
       style={[styles.button, loading ? styles.disabled : null]}
@@ -12,9 +12,7 @@ export default function QrScanButton({ title = "Scan QR", onPress, loading }) {
       {loading ? (
         <ActivityIndicator color="#fff" />
       ) : (
-        <Text style={styles.text}>
-          <FontAwesome5 name="qrcode" size={50} color="#fff" /> {" "}{title}
-        </Text>
+        <FontAwesome5 name="qrcode" size={50} color="#0051a2" />
       )}
     </TouchableOpacity>
   );
@@ -22,18 +20,11 @@ export default function QrScanButton({ title = "Scan QR", onPress, loading }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#0051a2", 
-    padding: 15,
-    borderRadius: 8,
+    width: 100,
+    height: 100,
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+    borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-  },
-  disabled: {
-    opacity: 0.6,
-  },
-  text: {
-    color: "#fff",
-    fontFamily: "NotoSansLao",
-    fontWeight: "bold",
   },
 });

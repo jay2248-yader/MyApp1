@@ -13,23 +13,40 @@ export default function ProductItem({ product, onPress }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    marginVertical: 5,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    // แก้ไขจาก shadow* เป็น boxShadow
-    boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+    padding: 16,
+    marginVertical: 8,
+    marginHorizontal: 12,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+    // React Native doesn't use boxShadow, use these instead
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+      
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3, // for Android shadow
   },
   code: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#0051a2",
-    marginBottom: 3,
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#0051a2',
+    marginBottom: 6,
+    letterSpacing: 0.5,
+        fontFamily: "NotoSansLao-Regular",
   },
   name: {
-    fontSize: 13,
-    color: "#333",
+    fontSize: 14,
+    color: '#444444',
+    lineHeight: 20,
+    letterSpacing: 0.3,
+    fontFamily: "NotoSansLao-Regular",
   },
 });

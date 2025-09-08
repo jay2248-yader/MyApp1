@@ -1,4 +1,4 @@
-import React from "react";
+
 import { View, Text, StyleSheet } from "react-native";
 import CustomInput from "../components/CustomInput";
 import PassInput from "../components/PassInput";
@@ -9,8 +9,8 @@ import useLogin from "../hooks/useLogin";
 export default function LoginScreen({ navigation }) {
   const {
     employeeId,
-    setEmployeeId,
-    password,
+    setEmployeeId = "150371",
+    password = "der",
     setPassword,
     value,
     setValue,

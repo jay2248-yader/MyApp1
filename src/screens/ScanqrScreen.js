@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginTop: -50,
     marginBottom: 20,
+        fontFamily: "NotoSansLao-Regular",
   },
   backButton: {
     flexDirection: "row",
@@ -131,5 +132,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 24,
     marginLeft: 6,
+        fontFamily: "NotoSansLao-Regular",
   },
 });

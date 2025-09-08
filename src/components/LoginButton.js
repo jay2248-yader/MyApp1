@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   buttonText: {
+    paddingHorizontal: 20,
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",

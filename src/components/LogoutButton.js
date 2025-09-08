@@ -1,5 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
+import { TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function LogoutButton({ onLogout }) {
   const handleLogout = () => {
@@ -15,23 +16,23 @@ export default function LogoutButton({ onLogout }) {
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={handleLogout}>
-      <Text style={styles.text}>LOGOUT</Text>
+    <TouchableOpacity 
+      style={styles.button} 
+      onPress={handleLogout}
+      activeOpacity={0.7}
+    >
+      <Ionicons name="log-out" size={50} color="#ff4d4d" />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#ff4d4d",
-    padding: 15,
-    borderRadius: 8,
+    height: 100,
+    width: 100,
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
   },
 });

@@ -13,15 +13,20 @@ export default function DataPrice({ item }) {
   return (
     <View style={styles.priceBox}>
       <Text style={styles.codeText}>{item.PRODUCTCODE}</Text>
-      <Text style={styles.priceText}>ວັນທີປັບລາຄາ: {formattedDate}</Text>
+      <View style={styles.dateContainer}>
+        <Text style={styles.dateLabel}>ວັນທີປັບລາຄາ:</Text>
+        <Text style={styles.dateValue}>{formattedDate}</Text>
+      </View>
       <Text style={styles.priceText}>{item.PRODUCTNAME}</Text>
-      <Text style={styles.priceText}>ຫົວໜ່ວຍ: {item.UNITCODE}</Text>
       <Text style={styles.priceText}>
-        ລາຄາ: {formattedPrice} {item.CURRENCYCODE}
+        ຫົວໜ່ວຍ: <Text style={[styles.priceText, { fontFamily: "NotoSansThai" }]}>{item.UNITCODE}</Text>
       </Text>
-      {item.REMARK ? (
-        <Text style={styles.remarkText}>💬 {item.REMARK}</Text>
-      ) : null}
+      <View style={styles.dateContainer}>
+      <Text style={styles.dateLabel}>
+        ລາຄາ:  
+      </Text>
+      <Text style={styles.dateValue}>{formattedPrice} {item.CURRENCYCODE}</Text>
+      </View>
     </View>
   );
 }
@@ -32,22 +37,63 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "transparent",
     padding: 0,
+    
   },
   codeText: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "bold",
     color: "#0051a2",
     marginBottom: 6,
+        fontFamily: "NotoSansLao-Regular",
   },
   priceText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "#333",
     marginBottom: 4,
+     paddingLeft: 5,
+    fontFamily: "NotoSansLao-Regular",
+    
   },
+
+  price:{
+    fontSize: 18,
+    backgroundColor: "#89bff8",
+    color: "black",
+    alignSelf: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 4,
+        fontFamily: "NotoSansLao-Regular",
+  },
+
   remarkText: {
     fontSize: 14,
     color: "#777",
     marginTop: 6,
     fontStyle: "italic",
+  },
+
+  dateContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+     alignSelf: 'flex-start',
+    backgroundColor: '#e3f2fd',
+    padding: 8,
+    borderRadius: 4,
+    marginBottom: 8,
+    
+  },
+  dateLabel: {
+    fontSize: 20,
+    color: '#1565c0',
+    marginRight: 8,
+    fontWeight: '600',
+        fontFamily: "NotoSansLao-Regular",
+  },
+  dateValue: {
+    fontSize: 20,
+    color: '#000',
+    fontWeight: 'bold',
+        fontFamily: "NotoSansLao-Regular",
   },
 });

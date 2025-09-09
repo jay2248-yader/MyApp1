@@ -22,31 +22,33 @@ export default function useHomeScreen() {
     }
   };
 
-  const handleSearch = async () => {
-    if (!searchText.trim()) {
-      setError("ກະລຸນາປ້ອນຄຳຄົ້ນຫາ");
-      return;
-    }
+const handleSearch = async (query) => {
+  const textToSearch = query ?? searchText; // ถ้ามี query จาก ProductScreen ใช้เลย
+  if (!textToSearch.trim()) {
+    setError("ກະລຸນາປ້ອນຄຳຄົ້ນຫາ");
+    return;
+  }
 
-    setLoading(true);
-    setError(null);
+  setLoading(true);
+  setError(null);
+  
+  try {
+    const searchResults = await getProductByName(textToSearch);
+    setProducts(searchResults);
+    setSearchText(textToSearch); // อัปเดต state ด้วย
+    console.log("Search results:", searchResults);
     
-    try {
-      const searchResults = await getProductByName(searchText);
-      setProducts(searchResults);
-      console.log("Search results:", searchResults);
-      
-      if (searchResults.length === 0) {
-        setError("ບໍ່ພົບຂໍ້ມູນສິນຄ້າ");
-      }
-    } catch (error) {
-      console.error("Search error:", error);
-      setProducts([]);
-      setError("ເກີດຂໍ້ຜິດພາດໃນການຄົ້ນຫາ");
-    } finally {
-      setLoading(false);
+    if (searchResults.length === 0) {
+      setError("ບໍ່ພົບຂໍ້ມູນສິນຄ້າ");
     }
-  };
+  } catch (error) {
+    console.error("Search error:", error);
+    setProducts([]);
+    setError("ເກີດຂໍ້ຜິດພາດໃນການຄົ້ນຫາ");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleQrScan = () => {
     goToScanQR();

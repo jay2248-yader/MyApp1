@@ -1,5 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
 import ProductDetailList from "../components/ProductDetailList";
 import usePriceData from "../hooks/usePriceData";
 import SearchInput from "../components/SearchInput";
@@ -13,10 +19,16 @@ export default function ProductScreen({ route, navigation }) {
   const [searchText, setSearchText] = React.useState("");
   const [qrLoading, setQrLoading] = React.useState(false);
 
-  const { priceData, warehouseData, loading, error } = usePriceData({ productCode, qrData });
+  const { priceData, warehouseData, loading, error } = usePriceData({
+    productCode,
+    qrData,
+  });
 
   const handleSearch = () => {
-    // TODO: Implement search functionality
+      if (!searchText) return; // ถ้าไม่มี text ไม่ต้องไป
+
+  // ส่งค่า searchText ไปหน้า Home
+  navigation.navigate("Home", { searchQuery: searchText });
   };
 
   const handleQrScan = () => {
@@ -40,17 +52,20 @@ export default function ProductScreen({ route, navigation }) {
           />
         </View>
         <View style={styles.buttonWrapper}>
-          <SearchButton title="ຄົ້ນຫາ" onPress={handleSearch} loading={loading} />
+          <SearchButton
+            title="ຄົ້ນຫາ"
+            onPress={handleSearch}
+            loading={loading}
+          />
         </View>
       </View>
 
       {/* ScrollView */}
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
         contentContainerStyle={{ paddingBottom: 100 }} // กันไม่ให้ทับปุ่มล่าง
         showsVerticalScrollIndicator={false}
       >
-
         <View>
           {loading && <ActivityIndicator size="large" color="#fff" />}
           {error && <Text style={{ color: "red" }}>{error}</Text>}
@@ -69,12 +84,10 @@ export default function ProductScreen({ route, navigation }) {
           <View style={styles.backButtonContainer}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <View style={styles.qrButtonContainer}>
-            <QrScanButton onPress={handleQrScan} loading={qrLoading} />
-          </View>
+          <View style={styles.qrButtonContainer}></View>
         </View>
         <View style={styles.logoutButtonContainer}>
-          <LogoutButton onLogout={handleLogout} />
+          <QrScanButton onPress={handleQrScan} loading={qrLoading} />
         </View>
       </View>
     </View>
@@ -82,43 +95,42 @@ export default function ProductScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
+  container: {
+    flex: 1,
     padding: 10,
     backgroundColor: "#408ee0",
-    position: 'relative',
+    position: "relative",
   },
-  searchRow: { 
-    flexDirection: "row", 
-    alignItems: "center", 
-   paddingTop: 60 ,
-   padding: 10,
-  
+  searchRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 50,
+    padding: 10,
   },
-  inputWrapper: { 
-    flex: 3, 
-    marginRight: 10, 
+  inputWrapper: {
+    flex: 3,
+    marginRight: 10,
   },
-  buttonWrapper: { 
-    flex: 1 
+  buttonWrapper: {
+    flex: 1,
   },
   scrollView: {
     flex: 1,
   },
-  bottomButtonRow: { 
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    padding: 10, 
-    position: "absolute", 
-    bottom: 20, 
-    left: 20, 
+  bottomButtonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+    position: "absolute",
+    bottom: 20,
+    left: 20,
     right: 20,
     borderRadius: 8,
   },
   leftButtons: {
     flex: 3,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   backButtonContainer: {
     flex: 1,
@@ -128,7 +140,7 @@ const styles = StyleSheet.create({
   },
   logoutButtonContainer: {
     flex: 1,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   codeBox: {
     marginTop: 16,
@@ -138,7 +150,7 @@ const styles = StyleSheet.create({
   },
   codeTitle: {
     fontSize: 16,
-    fontWeight: "bold",  
+    fontWeight: "bold",
     marginBottom: 6,
     color: "#0051a2",
   },

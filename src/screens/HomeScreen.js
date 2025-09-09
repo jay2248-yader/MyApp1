@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import SearchInput from "../components/SearchInput";
 import SearchButton from "../components/SearchButton";
 import QrScanButton from "../components/QrscanButton";
@@ -8,7 +8,7 @@ import useHomeScreen from "../hooks/useHome";
 import ProductList from "../components/ProductList";
 import useGoToProduct from "../hooks/useGoToProduct";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, route }) {
   const {
     searchText,
     setSearchText,
@@ -27,6 +27,12 @@ export default function HomeScreen({ navigation }) {
     goToProduct({ product });
   };
 
+React.useEffect(() => {
+  if (route.params?.searchQuery) {
+    handleSearch(route.params.searchQuery);
+  }
+}, [route.params?.searchQuery]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Fixed Search Bar */}
@@ -42,7 +48,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.buttonWrapper}>
           <SearchButton
             title="ຄົ້ນຫາ"
-            onPress={handleSearch}
+            onPress={() => handleSearch(searchText)}
             loading={loading}
           />
         </View>
@@ -61,19 +67,20 @@ export default function HomeScreen({ navigation }) {
       {/* Fixed Bottom Buttons */}
       <View style={styles.bottomButtonRow}>
         <View style={{ flex: 1, alignItems: "flex-start" }}>
+          <LogoutButton onLogout={handleLogout} />
+        </View>
+        <View style={{ flex: 1, alignItems: "flex-end" }}>
           <QrScanButton
             title="Scan QR"
             onPress={handleQrScan}
             loading={qrLoading}
           />
         </View>
-        <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <LogoutButton onLogout={handleLogout} />
-        </View>
       </View>
     </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#408ee0" },
@@ -81,9 +88,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
-    paddingTop: 50,
     paddingHorizontal: 20,
-    backgroundColor: "#408ee0", 
+    backgroundColor: "#408ee0",
   },
   inputWrapper: { flex: 3, marginRight: 10 },
   buttonWrapper: { flex: 1 },
@@ -92,12 +98,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
     borderRadius: 8,
     marginHorizontal: 20,
-    marginBottom: 60, 
+    marginBottom: 50,
   },
   bottomButtonRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
+    marginBottom: 10,
     position: "absolute",
     bottom: 0,
     left: 20,

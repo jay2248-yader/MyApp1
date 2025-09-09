@@ -9,21 +9,18 @@ export default function BackButton({ onPress }) {
       onPress={onPress}
       activeOpacity={0.7}
     >
-      <Ionicons name="arrow-back-circle" size={42} color="#fff" />
+      <Ionicons name="arrow-back-circle" size={60} color="#6a6a6a" />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#0051a2',
-    width: 80,
-    height: 80,
+     backgroundColor: "rgba(255, 255, 255, 0.6)",
+   width: 100,
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    button: {
-    padding: 8,
-  },
-        borderRadius: 15,
+        borderRadius: 50,
   },
 });

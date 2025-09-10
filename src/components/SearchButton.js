@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from "react-native";
+import MagnifyingGlass from "../assets/Icon/magnifying-glass-sharp-duotone-solid.svg";
 
 export default function SearchButton({ title, onPress, loading }) {
   return (
@@ -11,7 +12,7 @@ export default function SearchButton({ title, onPress, loading }) {
       {loading ? (
         <ActivityIndicator color="#fff" />
       ) : (
-        <Text style={styles.text}>{title}</Text>
+        <MagnifyingGlass width={24} height={24} fill="#fff" />
       )}
     </TouchableOpacity>
   );

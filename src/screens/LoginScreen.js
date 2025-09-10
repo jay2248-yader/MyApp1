@@ -1,4 +1,3 @@
-
 import { View, Text, StyleSheet } from "react-native";
 import CustomInput from "../components/CustomInput";
 import PassInput from "../components/PassInput";
@@ -6,11 +5,11 @@ import BranchDropdown from "../components/BranchDropdown";
 import Button from "../components/LoginButton";
 import useLogin from "../hooks/useLogin";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation, fontFamily = "NotoSansLao" }) {
   const {
     employeeId,
-    setEmployeeId = "150371",
-    password = "der",
+    setEmployeeId,
+    password,
     setPassword,
     value,
     setValue,
@@ -19,22 +18,18 @@ export default function LoginScreen({ navigation }) {
     errorPass,
     comboboxError,
     handleLogin,
-  } = useLogin(navigation);
+  } = useLogin(); 
 
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <Text style={[styles.header, { fontFamily: "NotoSansLao" }]}>
+        <Text style={[styles.header, { fontFamily }]}>
           ໂປຣແກຣມກວດລາຄາ ແລະ ສະຕັອກ
         </Text>
 
         <BranchDropdown
-          open={false}
           value={value}
-          setOpen={() => {}}
-          setValue={(val) => {
-            setValue(val);
-          }}
+          setValue={setValue} // อัปเดตค่า branch
           error={comboboxError}
         />
 
@@ -51,7 +46,11 @@ export default function LoginScreen({ navigation }) {
           error={errorPass}
         />
 
-        <Button title="ເຂົ້າສູ່ລະບົບ" onPress={handleLogin} loading={loading} />
+        <Button
+          title="ເຂົ້າສູ່ລະບົບ"
+          onPress={handleLogin} // handleLogin ใน hook จะส่ง branch/value เป็น site ไป backend
+          loading={loading}
+        />
       </View>
     </View>
   );

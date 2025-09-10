@@ -1,25 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   View,
   StyleSheet,
   Text,
-  ActivityIndicator,
   ImageBackground,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import ProductItem from "./ProductItem";
+import CscLoading from "./CscLoading"; 
+import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg";
 
 export default function ProductList({ products, error, loading, onSelect }) {
+  const [showLoading, setShowLoading] = useState(false);
+
+  // จับเวลา minimum 3 วินาที
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      setShowLoading(true);
+      timer = setTimeout(() => {
+        setShowLoading(false);
+      }, 3000); // 3000 ms = 3 วินาที
+    } else {
+      // ถ้า loading = false ก่อนครบ 3 วินาที ให้รอจนครบ
+      timer = setTimeout(() => {
+        setShowLoading(false);
+      }, 3000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [loading]);
+
   const renderItem = ({ item }) => (
     <ProductItem product={item} onPress={() => onSelect && onSelect(item)} />
   );
 
   const renderEmptyComponent = () => {
-    if (loading) {
+    if (showLoading) {
       return (
         <View style={styles.emptyContainer}>
-          <ActivityIndicator size="large" color="#0051a2" />
+          <CscLoading isLoading={true} styles={styles.loading} />
           <Text style={styles.loadingText}>ກຳລັງຄົ້ນຫາ...</Text>
         </View>
       );
@@ -27,7 +47,7 @@ export default function ProductList({ products, error, loading, onSelect }) {
 
     return (
       <View style={styles.emptyContainer}>
-        <Ionicons name="alert-circle-outline" size={50} color="#ff5252" />
+        <AlertIcon width={50} height={50} color="#ff5252" />
         <Text style={styles.emptyText}>
           {error || "ບໍ່ພົບຂໍ້ມູນສິນຄ້າ"}
         </Text>
@@ -41,42 +61,39 @@ export default function ProductList({ products, error, loading, onSelect }) {
   };
 
   return (
-  <ImageBackground
-  source={require("../assets/artboard.png")}
-  style={styles.background}
-  imageStyle={{
-    opacity: 0.1,
-    resizeMode: "contain",
-    width: "100%",   
-    height: "100%",  
-    alignSelf: "center", 
-    padding: 50,
-    marginTop: -20,
-  }}
->
-  <View style={styles.overlay} />
+    <ImageBackground
+      source={require("../assets/artboard.png")}
+      style={styles.background}
+      imageStyle={{
+        opacity: 0.1,
+        resizeMode: "contain",
+        width: "100%",
+        height: "100%",
+        alignSelf: "center",
+        padding: 50,
+        marginTop: -20,
+      }}
+    >
+      <View style={styles.overlay} />
 
-  <FlatList
-    data={products}
-    keyExtractor={(item, index) => `${item.CODE}-${index}`}
-    renderItem={renderItem}
-    ListEmptyComponent={renderEmptyComponent}
-    contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
-    showsVerticalScrollIndicator={false}
-  />
-</ImageBackground>
-
+      <FlatList
+        data={products}
+        keyExtractor={(item, index) => `${item.CODE}-${index}`}
+        renderItem={renderItem}
+        ListEmptyComponent={renderEmptyComponent}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
+      />
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
+  background: { flex: 1 },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "#ffffff",
-    opacity: 0.3, 
+    opacity: 0.3,
   },
   emptyContainer: {
     flex: 1,
@@ -110,4 +127,3 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 });
-

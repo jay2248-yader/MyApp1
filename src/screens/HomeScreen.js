@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, Platform } from "react-native";
 import SearchInput from "../components/SearchInput";
 import SearchButton from "../components/SearchButton";
 import QrScanButton from "../components/QrscanButton";
@@ -27,11 +27,11 @@ export default function HomeScreen({ navigation, route }) {
     goToProduct({ product });
   };
 
-React.useEffect(() => {
-  if (route.params?.searchQuery) {
-    handleSearch(route.params.searchQuery);
-  }
-}, [route.params?.searchQuery]);
+  React.useEffect(() => {
+    if (route.params?.searchQuery) {
+      handleSearch(route.params.searchQuery);
+    }
+  }, [route.params?.searchQuery]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,9 +42,11 @@ React.useEffect(() => {
             value={searchText}
             onChangeText={setSearchText}
             placeholder="ຄົ້ນຫາຊື່ສິນຄ້າ"
-            onSubmitEditing={handleSearch}
+            returnKeyType="search"
+            onSubmitEditing={(event) => handleSearch(event.nativeEvent.text)}
           />
         </View>
+
         <View style={styles.buttonWrapper}>
           <SearchButton
             title="ຄົ້ນຫາ"
@@ -81,15 +83,24 @@ React.useEffect(() => {
   );
 }
 
-
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#408ee0" },
+  container: { flex: 1, backgroundColor: "#408ee0",
+     padding: Platform.select({
+      ios: 10,
+      android: 5,
+    }),
+   },
   searchRow: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
     paddingHorizontal: 20,
     backgroundColor: "#408ee0",
+    marginTop: Platform.select({
+      ios: 10,
+      android: 30,
+      web: 20,
+    }),
   },
   inputWrapper: { flex: 3, marginRight: 10 },
   buttonWrapper: { flex: 1 },
@@ -98,7 +109,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
     borderRadius: 8,
     marginHorizontal: 20,
-    marginBottom: 50,
+    marginBottom:20,
+        marginBottom: Platform.select({
+      ios: 25,
+      android: 50,
+      web: 50,
+    }),
   },
   bottomButtonRow: {
     flexDirection: "row",

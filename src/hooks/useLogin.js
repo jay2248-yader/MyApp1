@@ -6,7 +6,7 @@ import useAppNavigation from "../navigation/useAppNavigation";
 export default function useLogin() {
   const [employeeId, setEmployeeId] = useState("");
   const [password, setPassword] = useState("");
-  const [value, setValue] = useState("vit"); // branch
+  const [value, setValue] = useState("VT"); // default branch/site
   const [loading, setLoading] = useState(false);
 
   const [errorID, setErrorID] = useState("");
@@ -41,13 +41,17 @@ export default function useLogin() {
 
     try {
       setLoading(true);
-      const { data } = await loginApi(employeeId, password);
+
+      // ส่ง value (site) ไป backend
+      const { data } = await loginApi(employeeId, password, value);
       
-      // Check if response is HTML (error page)
-      if (typeof data === 'string' && data.includes('<!DOCTYPE html>')) {
-        throw new Error('Server returned HTML instead of JSON. Please check if the API server is running.');
+      // ตรวจสอบ response
+      if (typeof data === "string" && data.includes("<!DOCTYPE html>")) {
+        throw new Error(
+          "Server returned HTML instead of JSON. Please check if the API server is running."
+        );
       }
-      
+
       console.log("Login success:", data);
 
       // ใช้ navigation helper

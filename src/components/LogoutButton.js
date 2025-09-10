@@ -1,10 +1,9 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Alert } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import LogOutDuotone from "../assets/Icon/arrow-left-from-arc-sharp-duotone-solid.svg"; // ✅ import SVG
 
 export default function LogoutButton({ onLogout }) {
   const handleLogout = () => {
-    // ยืนยันก่อน Logout
     Alert.alert(
       "Logout",
       "Are you sure you want to logout?",
@@ -21,7 +20,7 @@ export default function LogoutButton({ onLogout }) {
       onPress={handleLogout}
       activeOpacity={0.7}
     >
-      <Ionicons name="log-out" size={50} color="#ff4d4d" />
+    <LogOutDuotone width={50} height={50} color="#ff4d4d" />
     </TouchableOpacity>
   );
 }

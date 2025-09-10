@@ -5,13 +5,13 @@ import {
   Text,
   ActivityIndicator,
   ScrollView,
+  Platform,
 } from "react-native";
 import ProductDetailList from "../components/ProductDetailList";
 import usePriceData from "../hooks/usePriceData";
 import SearchInput from "../components/SearchInput";
 import SearchButton from "../components/SearchButton";
 import QrScanButton from "../components/QrscanButton";
-import LogoutButton from "../components/LogoutButton";
 import BackButton from "../components/BackButton";
 
 export default function ProductScreen({ route, navigation }) {
@@ -25,9 +25,9 @@ export default function ProductScreen({ route, navigation }) {
   });
 
   const handleSearch = () => {
-      if (!searchText) return; // ถ้าไม่มี text ไม่ต้องไป
+      if (!searchText) return; 
 
-  // ส่งค่า searchText ไปหน้า Home
+
   navigation.navigate("Home", { searchQuery: searchText });
   };
 
@@ -41,7 +41,7 @@ export default function ProductScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* แถว search */}
+     
       <View style={styles.searchRow}>
         <View style={styles.inputWrapper}>
           <SearchInput
@@ -63,7 +63,7 @@ export default function ProductScreen({ route, navigation }) {
       {/* ScrollView */}
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={{ paddingBottom: 100 }} // กันไม่ให้ทับปุ่มล่าง
+        contentContainerStyle={{ paddingBottom: 100 }} 
         showsVerticalScrollIndicator={false}
       >
         <View>
@@ -104,8 +104,12 @@ const styles = StyleSheet.create({
   searchRow: {
     flexDirection: "row",
     alignItems: "center",
-    paddingTop: 50,
     padding: 10,
+        marginTop: Platform.select({
+          ios: 40,
+          android: 30,
+          web: 0,
+        }),
   },
   inputWrapper: {
     flex: 3,

@@ -14,6 +14,8 @@
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 		F8196D7CBC7F9B78220068C9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9604218D854A5C3223613D5E /* ExpoModulesProvider.swift */; };
 		F8582FF043C048D4511474B2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4AEC2F427B1B1F56054F5FB1 /* PrivacyInfo.xcprivacy */; };
+		890F958A150448B190F76DCC /* NotoSansLao-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0ABEB25ABF44241A074B119 /* NotoSansLao-VariableFont_wdth,wght.ttf */; };
+		EF73FB05D90842A0A20C7902 /* NotoSansThai-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81489515AD2349ABAB42845D /* NotoSansThai-VariableFont_wdth,wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyApp/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* MyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MyApp-Bridging-Header.h"; path = "MyApp/MyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		FD4DCD5DD307E50BFFADEA7B /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B0ABEB25ABF44241A074B119 /* NotoSansLao-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; name = "NotoSansLao-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/Noto_Sans_Lao/NotoSansLao-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		81489515AD2349ABAB42845D /* NotoSansThai-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; name = "NotoSansThai-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/Noto_Sans_Lao/NotoSansThai-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				A94CA849703DCD419397BB80 /* Pods */,
 				32175EDFEE1DBD13BBFC24AF /* ExpoModulesProviders */,
+				763CC90ED1FF419CB7ADD972 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -131,6 +136,16 @@
 			name = Supporting;
 			path = MyApp/Supporting;
 			sourceTree = "<group>";
+		};
+		763CC90ED1FF419CB7ADD972 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				B0ABEB25ABF44241A074B119 /* NotoSansLao-VariableFont_wdth,wght.ttf */,
+				81489515AD2349ABAB42845D /* NotoSansThai-VariableFont_wdth,wght.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -197,6 +212,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				F8582FF043C048D4511474B2 /* PrivacyInfo.xcprivacy in Resources */,
+				890F958A150448B190F76DCC /* NotoSansLao-VariableFont_wdth,wght.ttf in Resources */,
+				EF73FB05D90842A0A20C7902 /* NotoSansThai-VariableFont_wdth,wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

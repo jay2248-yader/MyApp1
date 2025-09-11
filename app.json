@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.jjay2248.myapp",
+      "bundleIdentifier": "com.jjay3333.myapp",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSCameraUsageDescription": "We need access to your camera to scan QR codes."
@@ -26,19 +26,21 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.jjay2248.myapp"
+      "package": "com.jjay3333.myapp",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "d05dc7d7-77a4-49fd-85db-f7f3920bc0e3"
+        "projectId": "236e137a-6717-4bd7-ba26-985feb701382"
       }
     },
-    "owner": "jjay2248",
+    "owner": "jjay3333",
     "plugins": [
-      "expo-barcode-scanner",
       "expo-font"
     ]
   }

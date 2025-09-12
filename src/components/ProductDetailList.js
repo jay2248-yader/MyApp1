@@ -1,21 +1,29 @@
 // src/components/ProductDetailList.js
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import ProductGroupItem from "./ProductGroupItem";
+import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg"; // SVG icon
 
+const { height, width } = Dimensions.get("window");
 export default function ProductDetailList({ priceData = [], warehouseData = [] }) {
-  // ถ้าไม่มีข้อมูลทั้งสอง
-  if ((!priceData || priceData.length === 0) && (!warehouseData || warehouseData.length === 0)) {
-    return <Text style={styles.emptyText}>ບໍ່ພົບຂໍ້ມູນສິນຄ້າ</Text>;
+
+  // แสดง Empty State ถ้า priceData ไม่มีข้อมูล
+  if (!priceData || priceData.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <AlertIcon width={100} height={100} fill="#ff5252" />
+        <Text style={styles.emptyTitle}>ບໍ່ພົບຂໍ້ມູນສິນຄ້າ</Text>
+        <Text style={styles.emptySubtitle}>ກະລຸນາລອງຄົ້ນຫາຫຼືເພີ່ມຂໍ້ມູນໃໝ່</Text>
+      </View>
+    );
   }
 
   // Group data by product - create array of { dataPrice, dataWarehouse }
   const groupedData = priceData.map(priceItem => {
-    // Find warehouse data for this product
     const relatedWarehouse = warehouseData.filter(
       whItem => whItem.PRODUCTCODE === priceItem.PRODUCTCODE
     );
-    
+
     return {
       dataPrice: priceItem,
       dataWarehouse: relatedWarehouse
@@ -36,14 +44,31 @@ export default function ProductDetailList({ priceData = [], warehouseData = [] }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  container: { flex: 1, },
+  emptyContainer: {
+ height: height * 0.8, // เต็มจอสูง
+    width: width* 0.92, 
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    margin: 10,
+    backgroundColor: "#f9f9f9",
+        borderRadius: 10,
     
   },
-  emptyText: {
-    color: "#aaa",
+  emptyTitle: {
+        fontFamily: "NotoSansLao-Regular",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#555",
     marginTop: 20,
+    marginBottom: 10,
     textAlign: "center",
-    fontSize: 16,
+  },
+  emptySubtitle: {
+        fontFamily: "NotoSansLao-Regular",
+    fontSize: 14,
+    color: "#888",
+    textAlign: "center",
   },
 });

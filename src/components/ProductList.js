@@ -5,9 +5,10 @@ import {
   StyleSheet,
   Text,
   ImageBackground,
+  ActivityIndicator,
+  Platform,
 } from "react-native";
 import ProductItem from "./ProductItem";
-import CscLoading from "./CscLoading"; 
 import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg";
 
 export default function ProductList({ products, error, loading, onSelect }) {
@@ -20,14 +21,12 @@ export default function ProductList({ products, error, loading, onSelect }) {
       setShowLoading(true);
       timer = setTimeout(() => {
         setShowLoading(false);
-      }, 3000); // 3000 ms = 3 วินาที
+      }, 3000);
     } else {
-      // ถ้า loading = false ก่อนครบ 3 วินาที ให้รอจนครบ
       timer = setTimeout(() => {
         setShowLoading(false);
       }, 3000);
     }
-
     return () => clearTimeout(timer);
   }, [loading]);
 
@@ -39,7 +38,7 @@ export default function ProductList({ products, error, loading, onSelect }) {
     if (showLoading) {
       return (
         <View style={styles.emptyContainer}>
-          <CscLoading isLoading={true} styles={styles.loading} />
+          <ActivityIndicator size="large" color="#0051a2" />
           <Text style={styles.loadingText}>ກຳລັງຄົ້ນຫາ...</Text>
         </View>
       );
@@ -70,7 +69,7 @@ export default function ProductList({ products, error, loading, onSelect }) {
         width: "100%",
         height: "100%",
         alignSelf: "center",
-        padding: 50,
+        padding: Platform.OS === "android" ? 70 : 50, // padding สำหรับ APK
         marginTop: -20,
       }}
     >

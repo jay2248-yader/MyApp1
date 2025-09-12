@@ -4,11 +4,11 @@
     "slug": "MyApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/splash-icon.png",
+    "icon": "./assets/LogoApp2.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/LogoApp2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,22 +22,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splash-icon.png",
+        "foregroundImage": "./assets/LogoApp2.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.jjay3333.myapp",
       "permissions": [
         "android.permission.CAMERA"
-      ]
+      ],
+      "usesCleartextTraffic": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/LogoApp2.png"
     },
     "extra": {
       "eas": {
         "projectId": "236e137a-6717-4bd7-ba26-985feb701382"
-      }
+      },
+      "apiUrl": "http://192.168.1.49:3002"
     },
     "owner": "jjay3333",
     "plugins": [

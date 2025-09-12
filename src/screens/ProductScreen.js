@@ -15,8 +15,8 @@ import QrScanButton from "../components/QrscanButton";
 import BackButton from "../components/BackButton";
 
 export default function ProductScreen({ route, navigation }) {
-  const { qrData, qrType, productCode } = route.params || {};
-  const [searchText, setSearchText] = React.useState("");
+  const { qrData, productCode } = route.params || {};
+const [searchText, setSearchText] = React.useState(productCode || qrData || "");
   const [qrLoading, setQrLoading] = React.useState(false);
 
   const { priceData, warehouseData, loading, error } = usePriceData({
@@ -25,10 +25,9 @@ export default function ProductScreen({ route, navigation }) {
   });
 
   const handleSearch = () => {
-      if (!searchText) return; 
+    if (!searchText) return;
 
-
-  navigation.navigate("Home", { searchQuery: searchText });
+    navigation.navigate("Home", { searchQuery: searchText });
   };
 
   const handleQrScan = () => {
@@ -41,13 +40,12 @@ export default function ProductScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-     
       <View style={styles.searchRow}>
         <View style={styles.inputWrapper}>
           <SearchInput
             placeholder="ຄົ້ນຫາຊື່ສິນຄ້າ"
             value={searchText}
-            onChangeText={setSearchText}
+            onChangeText={setSearchText} 
             onSubmitEditing={handleSearch}
           />
         </View>
@@ -63,7 +61,7 @@ export default function ProductScreen({ route, navigation }) {
       {/* ScrollView */}
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={{ paddingBottom: 100 }} 
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
         <View>
@@ -97,6 +95,7 @@ export default function ProductScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
     padding: 10,
     backgroundColor: "#408ee0",
     position: "relative",
@@ -105,11 +104,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-        marginTop: Platform.select({
-          ios: 40,
-          android: 30,
-          web: 0,
-        }),
+    marginTop: Platform.select({
+      ios: 40,
+      android: 30,
+      web: 0,
+    }),
   },
   inputWrapper: {
     flex: 3,

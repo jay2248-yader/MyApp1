@@ -1,7 +1,7 @@
 import { api } from './Client';
 
-export const login = (username, password, site) =>
-  api.post('/users/login', { username, password, site });
+export const login = (username, password) =>
+  api.post('/users/login', { username, password});
 
 export const getProductByName = async (productName) => {
   try {

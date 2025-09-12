@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#408ee0",
     marginTop: Platform.select({
       ios: 10,
-      android: 30,
+      android: 45,
       web: 20,
     }),
   },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom:20,
         marginBottom: Platform.select({
       ios: 25,
-      android: 50,
+      android: 60,
       web: 50,
     }),
   },
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 30,
     position: "absolute",
     bottom: 0,
     left: 20,

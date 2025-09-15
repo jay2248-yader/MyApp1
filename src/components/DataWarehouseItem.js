@@ -4,7 +4,7 @@ import { Text, StyleSheet } from "react-native";
 import { Table, Row } from "react-native-table-component";
 
 export default function DataWarehouseItem({ item }) {
-  // เตรียมข้อมูล row
+  
   const rowData = [
     `(${item.WAREHOUSE}-${item.LOCATION})\n${item.WHNAME}`,
     item.UNITNAME,
@@ -17,7 +17,7 @@ export default function DataWarehouseItem({ item }) {
         data={rowData}
         style={styles.row}
         textStyle={styles.text}
-        flexArr={[2, 1, 1]} // column แรกกว้างกว่าหน่อย
+        flexArr={[2, 1, 1]} 
       />
     </Table>
   );
@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   inStock: {
-    color: "#2e7d32", // เขียว
+    color: "#2e7d32", 
     fontWeight: "600",
   },
   outStock: {
-    color: "#d32f2f", // แดง
+    color: "#d32f2f", 
     fontWeight: "600",
   },
 });

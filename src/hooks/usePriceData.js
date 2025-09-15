@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { getPriceByProductCode } from "../api/users";
 
 /**
- * ใช้ดึงราคาสินค้าและข้อมูลคลังสินค้าโดยใช้ productCode หรือ qrData
  */
 export default function usePriceData({ productCode, qrData }) {
   const [priceData, setPriceData] = useState([]);

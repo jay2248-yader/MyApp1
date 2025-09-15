@@ -2,12 +2,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import ProductGroupItem from "./ProductGroupItem";
-import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg"; // SVG icon
+import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg"; 
 
 const { height, width } = Dimensions.get("window");
 export default function ProductDetailList({ priceData = [], warehouseData = [] }) {
 
-  // แสดง Empty State ถ้า priceData ไม่มีข้อมูล
+
   if (!priceData || priceData.length === 0) {
     return (
       <View style={styles.emptyContainer}>
@@ -46,7 +46,7 @@ export default function ProductDetailList({ priceData = [], warehouseData = [] }
 const styles = StyleSheet.create({
   container: { flex: 1, },
   emptyContainer: {
- height: height * 0.8, // เต็มจอสูง
+ height: height * 0.8, 
     width: width* 0.92, 
     justifyContent: "center",
     alignItems: "center",

@@ -10,7 +10,6 @@ export default function DataPrice({ item }) {
     maximumFractionDigits: 2,
   }).format(item.SALEPRICE1);
 
-  // ตรวจสอบว่า PRODUCTNAME มีตัวอักษรไทยหรือไม่
   const isThai = /[\u0E00-\u0E7F]/.test(item.PRODUCTNAME);
   const productFont = isThai ? "NotoSansThai" : "NotoSansLao-Regular";
 

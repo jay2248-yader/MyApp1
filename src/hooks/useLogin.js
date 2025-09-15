@@ -17,6 +17,7 @@ export default function useLogin() {
   const { resetToHome } = useAppNavigation();
 
   const handleLogin = async () => {
+    // reset error state
     setErrorID('');
     setErrorPass('');
     setComboboxError('');
@@ -30,29 +31,31 @@ export default function useLogin() {
     try {
       setLoading(true);
 
-      // 🔹 ตั้ง branch ตาม dropdown ก่อนเรียก API
+      // ตั้งค่า branch ไปที่ client (axios instance หรือ fetch)
       setBranch(value);
 
-      // 🔹 เรียก login API
+      // call API login
       const { data } = await loginApi(employeeId, password, value);
 
+      // ตรวจว่า response กลับมาไม่ใช่ html
       if (typeof data === 'string' && data.includes('<!DOCTYPE html>')) {
         throw new Error('Server returned HTML instead of JSON.');
       }
 
       console.log('Login success:', data);
 
+      // ถ้า success → navigate ไป Home
       resetToHome({
         employeeId: data?.userCODE || employeeId,
         branch: value,
         user: data,
       });
     } catch (e) {
-      const serverMsg = e?.response?.data;
-      const msg = typeof serverMsg === 'string'
-        ? serverMsg
-        : serverMsg?.message || 'ເຊື່ອມຕໍ່ API ບໍ່ໄດ້';
-      Alert.alert('ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ', msg);
+      // ❌ ไม่ต้องโชว์ error ของ server แล้ว
+      Alert.alert(
+        'ການເຂົ້າລະບົບລົ້ມເຫຼວ',
+        'ກະລຸນາກວດສອບລະຫັດພະນັກງານ ຫຼື ລະຫັດຜ່ານໃໝ່'
+      );
     } finally {
       setLoading(false);
     }

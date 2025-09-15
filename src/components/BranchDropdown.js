@@ -5,7 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 export default function BranchDropdown({ value, setValue, error, fontFamily = "NotoSansLao" }) {
   const [open, setOpen] = useState(false);
 
-  // branches พร้อม mapping ไป site backend
+
   const branches = [
     { label: "ສາຂາ ວຽງຈັນ", value: "VT" },
     { label: "ສາຂາ ປາກເຊ", value: "PS" },

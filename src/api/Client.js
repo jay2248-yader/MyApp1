@@ -7,43 +7,46 @@ const API_BRANCHES = {
   PS: 'http://192.168.1.49:3002',
 };
 
-// ตัวแปรเก็บ branch ปัจจุบัน
 let currentBranch = 'VT';
 
 export const api = axios.create({
-  baseURL: API_BRANCHES[currentBranch], // ค่าเริ่มต้น
+  baseURL: API_BRANCHES[currentBranch],
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
+  timeout: 5000, 
 });
 
-// Interceptor ตรวจสอบ response
+
 api.interceptors.response.use(
   (response) => {
     if (typeof response.data === 'string' && response.data.includes('<!DOCTYPE html>')) {
-      throw new Error('API server returned HTML instead of JSON.');
+      return Promise.reject(new Error('API server returned HTML instead of JSON.'));
     }
     return response;
   },
   (error) => {
-    console.error('API Error:', {
-      message: error.message,
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      data: error.response?.data,
-    });
+
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('API Error:', error.message);
+    }
+    
     return Promise.reject(error);
   }
 );
 
-// ฟังก์ชันเปลี่ยน branch
+
 export function setBranch(branchCode) {
   if (API_BRANCHES[branchCode]) {
     currentBranch = branchCode;
     api.defaults.baseURL = API_BRANCHES[branchCode];
-    console.log('🔄 Switched API branch:', branchCode, 'URL:', API_BRANCHES[branchCode]);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔄 Switched API branch:', branchCode, 'URL:', API_BRANCHES[branchCode]);
+    }
   } else {
-    console.warn('⚠️ Unknown branch:', branchCode);
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('⚠️ Unknown branch:', branchCode);
+    }
   }
 }

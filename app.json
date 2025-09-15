@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "MyApp",
-    "slug": "MyApp",
+    "name": "AppCheckPrice",
+    "slug": "AppCheckPrice",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LogoApp2.png",
+    "icon": "./assets/LogoAPP2.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/LogoApp2.png",
+      "image": "./assets/LogoAPP2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoApp2.png",
+        "foregroundImage": "./assets/LogoAPP2.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -33,7 +33,7 @@
       "usesCleartextTraffic": true
     },
     "web": {
-      "favicon": "./assets/LogoApp2.png"
+      "favicon": "./assets/LogoAPP2.png"
     },
     "extra": {
       "eas": {

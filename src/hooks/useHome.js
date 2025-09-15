@@ -23,7 +23,7 @@ export default function useHomeScreen() {
   };
 
 const handleSearch = async (query) => {
-  const textToSearch = query ?? searchText; // ถ้ามี query จาก ProductScreen ใช้เลย
+  const textToSearch = query ?? searchText; 
   if (!textToSearch.trim()) {
     setError("ກະລຸນາປ້ອນຄຳຄົ້ນຫາ");
     return;
@@ -35,7 +35,7 @@ const handleSearch = async (query) => {
   try {
     const searchResults = await getProductByName(textToSearch);
     setProducts(searchResults);
-    setSearchText(textToSearch); // อัปเดต state ด้วย
+    setSearchText(textToSearch); 
     console.log("Search results:", searchResults);
     
     if (searchResults.length === 0) {

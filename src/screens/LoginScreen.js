@@ -99,6 +99,7 @@ logoBox: {
   borderRadius: 15,  
   justifyContent: "center",
   alignItems: "center",
+  marginTop: -50,
   marginBottom: 10,
 
 
@@ -113,7 +114,4 @@ logo: {
   width: "80%", 
   height: "80%",
 },
-
-
-  
 });

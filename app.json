@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoAPP2.png",
+        "foregroundImage": "./assets/LogoAPP_apk.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,

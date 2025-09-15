@@ -76,7 +76,7 @@ const [searchText, setSearchText] = React.useState(productCode || qrData || "");
         </View>
       </ScrollView>
 
-      {/* ปุ่มล่าง fix */}
+    
       <View style={styles.bottomButtonRow}>
         <View style={styles.leftButtons}>
           <View style={styles.backButtonContainer}>

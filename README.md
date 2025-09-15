@@ -1,6 +1,59 @@
 ຖ້າ download zip มาแต่ git แล้วต้องติดตั้ง : 
 - npm install
 
+package.json
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "npx expo start -c",
+    "android": "npx expo start --android",
+    "ios": "npx expo start --ios",
+    "web": "npx expo start --web",
+    "build:web": "npx expo export --platform web",
+    "deploy:web": "npx expo export --platform web && echo 'Files ready in dist/ folder for deployment'"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~6.1.2",
+    "@react-native-picker/picker": "2.11.1",
+    "@react-navigation/native": "^7.1.17",
+    "@react-navigation/native-stack": "^7.3.26",
+    "axios": "^1.11.0",
+    "expo": "^54.0.7",
+    "expo-camera": "~17.0.7",
+    "expo-font": "~14.0.8",
+    "expo-splash-screen": "~31.0.10",
+    "expo-status-bar": "~3.0.8",
+    "expo-system-ui": "~6.0.7",
+    "mssql": "^11.0.1",
+    "nativewind": "^4.1.23",
+    "prop-types": "^15.8.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-dropdown-picker": "^5.4.6",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-paper": "^5.14.5",
+    "react-native-reanimated": "~4.1.0",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-table-component": "^1.2.2",
+    "react-native-web": "^0.21.0",
+    "react-native-worklets": "^0.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "react-native-svg-transformer": "^1.5.1",
+    "tailwindcss": "^3.4.17"
+  }
+}
+
+
+
 ຖ້າ build แล้วต้อง 
 - npx expo prebuild
 - cd android

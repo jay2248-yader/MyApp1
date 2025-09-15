@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/LogoAPP_apk.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff"
     },
     "ios": {
       "supportsTablet": true,

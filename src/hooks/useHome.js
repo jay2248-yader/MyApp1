@@ -9,7 +9,7 @@ export default function useHomeScreen() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
 
-  const { goToScanQR, resetToLogin } = useAppNavigation();
+  const { resetToScanQR, resetToLogin } = useAppNavigation();
 
   const handleSearchTextChange = (text) => {
     setSearchText(text);
@@ -51,7 +51,7 @@ const handleSearch = async (query) => {
 };
 
   const handleQrScan = () => {
-    goToScanQR();
+   resetToScanQR();
   };
 
   const handleLogout = () => {

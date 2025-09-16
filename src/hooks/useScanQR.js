@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Dimensions } from "react-native";
 import { useCameraPermissions } from "expo-camera";
 import useGoToProduct from "./useGoToProduct";
@@ -6,16 +6,19 @@ import useGoToProduct from "./useGoToProduct";
 export default function useScanQR(navigation) {
   const [permission, requestPermission] = useCameraPermissions();
   const scannedRef = useRef(false);
+  const [scannedData, setScannedData] = useState(null);
   const { goToProduct } = useGoToProduct(navigation);
 
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-  const BOX_SIZE = 260;
+  
+  const BOX_WIDTH = SCREEN_WIDTH * 0.85;
+  const BOX_HEIGHT = 200;
 
   const scanBoxRect = useMemo(() => ({
-    left: (SCREEN_WIDTH - BOX_SIZE) / 2,
-    top: (SCREEN_HEIGHT - BOX_SIZE) / 2,
-    right: (SCREEN_WIDTH + BOX_SIZE) / 2,
-    bottom: (SCREEN_HEIGHT + BOX_SIZE) / 2,
+    left: (SCREEN_WIDTH - BOX_WIDTH) / 2,
+    top: (SCREEN_HEIGHT - BOX_HEIGHT) / 2,
+    right: (SCREEN_WIDTH + BOX_WIDTH) / 2,
+    bottom: (SCREEN_HEIGHT + BOX_HEIGHT) / 2,
   }), [SCREEN_WIDTH, SCREEN_HEIGHT]);
 
   useEffect(() => {
@@ -42,7 +45,7 @@ export default function useScanQR(navigation) {
         return isPointInside(cx, cy);
       }
       return true;
-    } catch (e) {
+    } catch {
       return true;
     }
   };
@@ -50,17 +53,21 @@ export default function useScanQR(navigation) {
   const handleBarCodeScanned = ({ type, data, bounds, cornerPoints }) => {
     if (scannedRef.current) return;
     const evt = { bounds, cornerPoints };
-    if (!isWithinScanBox(evt)) {
-      return;
-    }
+    if (!isWithinScanBox(evt)) return;
 
     scannedRef.current = true;
+    setScannedData({ type, data });
+
+    // สแกนแล้วไป goToProduct เลย
     goToProduct({ qrData: data, qrType: type });
   };
 
   return {
     permission,
-    BOX_SIZE,
+    BOX_WIDTH,
+    BOX_HEIGHT,
     handleBarCodeScanned,
+    scannedData,
+    isScanned: scannedRef.current,
   };
 }

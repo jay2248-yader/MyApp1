@@ -22,13 +22,17 @@ export default function useAppNavigation() {
     });
   }, [navigation]);
 
-  const goToScanQR = useCallback(() => {
-    navigation.navigate("ScanQR");
-  }, [navigation]);
+ const resetToScanQR = useCallback(() => {
+  navigation.reset({
+    index: 0,
+    routes: [{ name: "ScanQR" }],
+  });
+}, [navigation]);
+
 
   return {
     resetToHome,
     resetToLogin,
-    goToScanQR,
+     resetToScanQR,
   };
 }

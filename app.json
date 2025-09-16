@@ -4,11 +4,11 @@
     "slug": "AppCheckPrice",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LogoAPP_apk.png",
+    "icon": "./assets/LogoAPP_apk.webp",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/LogoAPP_apk.png",
+      "image": "./assets/LogoAPP_apk.webp",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoAPP_apk.png",
+        "foregroundImage": "./assets/LogoAPP_apk.webp",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -33,7 +33,7 @@
       "usesCleartextTraffic": true
     },
     "web": {
-      "favicon": "./assets/LogoAPP_apk.png"
+      "favicon": "./assets/LogoAPP_apk.webp"
     },
     "extra": {
       "eas": {

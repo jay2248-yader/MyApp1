@@ -1,5 +1,7 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView, Platform } from "react-native";
+import { View, StyleSheet, Platform } 
+from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchInput from "../components/SearchInput";
 import SearchButton from "../components/SearchButton";
 import QrScanButton from "../components/QrscanButton";

@@ -1,24 +1,35 @@
-// src/components/ProductGroupItem.js
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import DataPrice from "./DataPrice";
 import DataWarehouseItem from "./DataWarehouseItem";
 import { Table, Row } from "react-native-table-component";
+import AlertIcon from "../assets/Icon/circle-exclamation-sharp-duotone-solid.svg"; 
 
 export default function ProductGroupItem({ dataPrice, dataWarehouse = [] }) {
+  const hasPriceData = dataPrice && Object.keys(dataPrice).length > 0;
+
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>ຂໍ້ມູນສິນຄ້າ</Text>
-        <Text style={styles.productCode}>{dataPrice?.CURRENCYCODE}</Text>
+        <Text style={styles.productCode}>
+          {hasPriceData ? dataPrice.CURRENCYCODE : "-"}
+        </Text>
       </View>
 
       {/* Body Section */}
       <View style={styles.body}>
         {/* Price Information */}
         <View style={styles.priceSection}>
-          <DataPrice item={dataPrice} />
+          {hasPriceData ? (
+            <DataPrice item={dataPrice} />
+          ) : (
+            <View style={styles.alertContainer}>
+             <AlertIcon width={50} height={50} fill="#ff5252" />
+              <Text style={styles.noPriceText}>ບໍ່ມີຂໍ້ມູນລາຄາ</Text>
+            </View>
+          )}
         </View>
 
         {/* Warehouse Information */}
@@ -35,12 +46,21 @@ export default function ProductGroupItem({ dataPrice, dataWarehouse = [] }) {
             </Table>
 
             {/* Data Rows */}
-            {dataWarehouse.map((whItem, index) => (
-              <DataWarehouseItem
-                key={`${whItem.PRODUCTCODE}-${whItem.WAREHOUSE}-${whItem.LOCATION}-${index}`}
-                item={whItem}
-              />
-            ))}
+            {dataWarehouse.map((whItem, index) => {
+              // สร้าง key ที่แน่ใจว่าไม่ซ้ำ
+              const key =
+                whItem.ID ||
+                `${whItem.PRODUCTCODE || ""}-${whItem.WAREHOUSE || ""}-${whItem.LOCATION || ""}-${index}`;
+
+              return <DataWarehouseItem key={key} item={whItem} />;
+            })}
+          </View>
+        )}
+
+        {/* กรณีไม่มี dataPrice และไม่มี dataWarehouse */}
+        {!hasPriceData && (!dataWarehouse || dataWarehouse.length === 0) && (
+          <View style={styles.noDataBox}>
+            <Text style={styles.noDataText}>ບໍ່ມີຂໍ້ມູນ</Text>
           </View>
         )}
       </View>
@@ -96,6 +116,19 @@ const styles = StyleSheet.create({
   priceSection: {
     marginBottom: 20,
   },
+  alertContainer: {
+    alignItems: "center",
+    backgroundColor: "#ffe6e6",
+    padding: 10,
+    borderRadius: 6,
+  },
+
+  noPriceText: {
+    fontSize: 20,
+    color: "#ff5252",
+    fontWeight: "bold",
+    fontFamily: "NotoSansLao-Regular",
+  },
   warehouseSection: {
     paddingTop: 16,
     borderTopWidth: 1,
@@ -123,5 +156,17 @@ const styles = StyleSheet.create({
     color: "#666",
     textAlign: "center",
     fontStyle: "italic",
+  },
+  noDataBox: {
+    padding: 16,
+    backgroundColor: "#ffe6e6",
+    borderRadius: 6,
+    alignItems: "center",
+  },
+  noDataText: {
+    fontSize: 16,
+    color: "#ff5252",
+    fontWeight: "bold",
+    fontFamily: "NotoSansLao-Regular",
   },
 });

@@ -61,7 +61,7 @@ export default function ProductList({ products, error, loading, onSelect }) {
 
   return (
     <ImageBackground
-      source={require("../assets/artboard.webp")}
+      source={require("../assets/artboard.png")}
       style={styles.background}
       imageStyle={{
         opacity: 0.1,

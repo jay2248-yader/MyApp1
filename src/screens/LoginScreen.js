@@ -27,7 +27,7 @@ export default function LoginScreen({
     <View style={styles.container}>
     <View style={styles.logoBox}>
         <Image
-          source={require("../assets/LogoAPP2.webp")}
+          source={require("../assets/LogoAPP2.png")}
           style={styles.logo} 
           resizeMode="contain"
         />

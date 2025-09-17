@@ -28,8 +28,8 @@ export default function ScanQrScreen({ navigation }) {
         onBarcodeScanned={isScanned ? undefined : handleBarCodeScanned}
         barcodeScannerSettings={{
           barcodeTypes: [
-            "qr","aztec","ean13","ean8","pdf417","upc_e","datamatrix",
-            "code128","code39","code93","codabar","itf14","upc_a"
+            "qr",
+            "code128","code39",
           ],
         }}
       />
@@ -72,7 +72,7 @@ export default function ScanQrScreen({ navigation }) {
               onPress={() =>
                 navigation.reset({
                   index: 0,
-                  routes: [{ name: "ProductScreen" }], // กลับไป ProductScreen โดยตรง
+                  routes: [{ name: "Product" }], // กลับไป ProductScreen โดยตรง
                 })
               }
             >
